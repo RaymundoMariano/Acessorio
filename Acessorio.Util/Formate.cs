@@ -26,7 +26,8 @@
         /// <returns></returns>
         public static string CPF(object cpf)
         {
-            cpf = Retire(cpf);
+            cpf = Remove.Mascara(cpf);
+
             string str = cpf.ToString().PadLeft(11, '0');
             if (str == "00000000000")
                 return string.Empty;
@@ -43,39 +44,13 @@
         /// <returns></returns>
         public static string CEP(object cep)
         {
-            cep = Retire(cep);
+            cep = Remove.Mascara(cep);
+
             string str = cep.ToString().PadLeft(8, '0');
             if (str == "00000000")
                 return string.Empty;
             str = str.Substring(0, 5) + "-" + str.Substring(5, 3);
             return str;
-        }
-        #endregion
-
-        #region Retire
-        /// <summary>
-        /// Desformatar
-        /// </summary>
-        /// <param name="campo formatado"></param>
-        /// <returns></returns>
-        public static string Retire(object campo)
-        {
-            string str = campo.ToString().Replace(".", "").Replace("-", "").Replace("/", "");
-            str = str.Replace("(", "").Replace(")", "");
-            return str;
-        }
-        #endregion
-
-        #region RemoveAcentos
-        public static string RemoveAcentos(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return "";
-            else
-            {
-                byte[] bytes = System.Text.Encoding.GetEncoding("iso-8859-8").GetBytes(input);
-                return System.Text.Encoding.UTF8.GetString(bytes);
-            }
         }
         #endregion
     }

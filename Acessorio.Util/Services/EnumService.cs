@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Acessorio.Util.Services
 {
-    public static class EnumService<T> where T : Enum
+    public static class EnumService<T>
     {
         public static IList<SelectOption> GetOptions<T>()
         {
